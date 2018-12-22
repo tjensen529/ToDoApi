@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TodoApi.Models;
@@ -39,6 +40,7 @@ namespace TodoApi.Controllers
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
             var todoItem = await _context.TodoItems.FindAsync(id);
+            Debug.WriteLine("HttpGet " + todoItem.Id + "," + todoItem.IsComplete + "," + todoItem.Name);
 
             if (todoItem == null)
             {
@@ -52,6 +54,7 @@ namespace TodoApi.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
+            Debug.WriteLine("HttpPost " + todoItem.Id + "," + todoItem.IsComplete + "," + todoItem.Name);
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
@@ -62,6 +65,7 @@ namespace TodoApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
+            Debug.WriteLine("HttpPut " + todoItem.Id + "," + todoItem.IsComplete + "," + todoItem.Name);
             if (id != todoItem.Id)
             {
                 return BadRequest();
@@ -77,6 +81,7 @@ namespace TodoApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<TodoItem>> DeleteTodoItem(long id)
         {
+            Debug.WriteLine("Delete " + id);
             var todoItem = await _context.TodoItems.FindAsync(id);
             if (todoItem == null)
             {
