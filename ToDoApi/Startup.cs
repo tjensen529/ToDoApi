@@ -37,6 +37,7 @@ namespace ToDoApi
         {
             //////////////////////////////////////////////////////////////////////////
             /// Added this section.  See:
+            /// https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&tabs=visual-studio
             /// https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.2&tabs=visual-studio
             /// 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
